@@ -1,0 +1,4 @@
+.vagrant/
+.kube/
+ansible/playbooks/join-as-control-plane.sh
+ansible/playbooks/join-as-worker.sh

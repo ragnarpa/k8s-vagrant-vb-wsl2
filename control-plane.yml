@@ -1,0 +1,9 @@
+- name: k8s-cp-1
+  ip: 192.168.50.11
+  port: 6443
+- name: k8s-cp-2
+  ip: 192.168.50.12
+  port: 6443
+- name: k8s-cp-3
+  ip: 192.168.50.13
+  port: 6443

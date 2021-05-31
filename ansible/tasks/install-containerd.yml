@@ -1,0 +1,25 @@
+- import_tasks: configure-apt-repository-kubernetes.yml
+
+- name: Install containerd
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+      - containerd
+      - cri-tools
+
+- name: Create /etc/containerd
+  file:
+    path: /etc/containerd
+    state: directory
+
+- name: Configure containerd
+  command: "containerd config default > /etc/containerd/config.toml"
+
+- name: Restart containerd
+  service:
+    name: containerd
+    daemon_reload: yes
+    state: restarted

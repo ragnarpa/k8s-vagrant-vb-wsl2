@@ -1,0 +1,3 @@
+export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+# Change VAGRANT_SSH_HOST as needed
+export VAGRANT_SSH_HOST="localhost"

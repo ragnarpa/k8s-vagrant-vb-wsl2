@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - import_tasks: ../tasks/install-apt-https.yml
+    - import_tasks: ../tasks/install-containerd.yml
+    - import_tasks: ../tasks/disable-swap.yml
+    - import_tasks: ../tasks/install-kubernetes.yml
+    - import_tasks: ../tasks/configure-br-netfilter.yml
+
+    - name: Check control plane status
+      shell: until curl -k https://{{ control_plane_endpoint }}/healthz?verbose; do sleep 1; done
+
+    - name: Copy join-as-control-plane.sh
+      copy:
+        src: ./join-as-control-plane.sh
+        dest: /tmp/join-as-control-plane.sh
+        mode: "0777"
+
+    - name: Join control plane
+      shell: NODE_IP={{ node_ip }} sh /tmp/join-as-control-plane.sh

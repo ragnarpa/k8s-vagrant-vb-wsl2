@@ -1,0 +1,15 @@
+- import_tasks: configure-apt-repository-kubernetes.yml
+
+- name: Install Kubernetes
+  apt:
+    name: "{{ packages }}"
+    state: present
+    update_cache: yes
+  vars:
+    packages:
+      - kubelet
+      - kubeadm
+      - kubectl
+
+- name: Pin Kubernetes packages
+  command: apt-mark hold kubelet kubeadm kubectl

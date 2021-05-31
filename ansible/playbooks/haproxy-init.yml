@@ -1,0 +1,19 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: Install HAProxy
+      apk:
+        name: haproxy
+        state: present
+        update_cache: yes
+
+    - name: Configure HAProxy
+      template:
+        src: ../template/haproxy/haproxy.cfg.j2
+        dest: /etc/haproxy/haproxy.cfg
+
+    - name: Restart HAProxy
+      service:
+        name: haproxy
+        enabled: yes
+        state: restarted
