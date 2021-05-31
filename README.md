@@ -14,7 +14,8 @@ An example setup of HA Kubernetes cluster with WSL2 + Vagrant + Ansible on your 
 
 ## Create Kubernetes cluster
 
-- Open WSL shell and configure Vagrant for WSL
+- Update `VAGRANT_SSH_HOST` in `.wsl-env` with primary IP of your host
+- Open WSL shell (keep shell open for subsequent commands) and configure Vagrant for WSL
 
   ```sh
   source .wsl-env
@@ -38,7 +39,7 @@ An example setup of HA Kubernetes cluster with WSL2 + Vagrant + Ansible on your 
   vagrant ssh k8s-cp-1 -c 'mkdir -p /vagrant/.kube && cp .kube/config /vagrant/.kube/config'
   ```
 
-  ⚠️ `/vagrant/.kube/config` will contain credentials for `kubernetes-admin`.
+  ⚠️ `/vagrant/.kube/config` will contain credentials for `kubernetes-admin` account.
 
 - Check out Kubernetes nodes and pods
 
