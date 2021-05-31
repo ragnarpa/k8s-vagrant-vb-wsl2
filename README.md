@@ -1,4 +1,4 @@
-# Kubernetes on Windows + VirtualBox with Vagrant and Ansible
+# Kubernetes 1.21.1 on Windows + VirtualBox with Vagrant and Ansible
 
 An example setup of HA Kubernetes cluster with WSL2 + Vagrant + Ansible on your home PC.
 
