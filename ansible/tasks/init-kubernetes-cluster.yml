@@ -1,7 +1,12 @@
 - import_tasks: configure-br-netfilter.yml
 
 - name: Initialize Kubernetes cluster
-  command: kubeadm init --control-plane-endpoint {{ control_plane_endpoint }} --upload-certs --apiserver-advertise-address={{ node_ip }} --pod-network-cidr={{ pod_network_cidr }} --certificate-key={{ cert_key }}
+  command: kubeadm init
+    --control-plane-endpoint={{ control_plane_endpoint }}
+    --upload-certs
+    --apiserver-advertise-address={{ node_ip }}
+    --pod-network-cidr={{ pod_network_cidr }}
+    --certificate-key={{ cert_key }}
 
 - name: Copy kubeconfig
   become: false
