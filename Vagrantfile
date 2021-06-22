@@ -4,7 +4,7 @@ IMAGE_NAME = "ubuntu/focal64"
 LB_IMAGE_NAME = "generic/alpine38"
 SSH_HOST = ENV["VAGRANT_SSH_HOST"]
 
-# DNS or IP address where SSH is listenting on a VM.
+# IP address where SSH is listenting on a VM via port forward.
 # In Windows + WSL2 environment VirtualBox binds ports on primary IP.
 unless SSH_HOST
     raise "VAGRANT_SSH_HOST not set."
@@ -63,6 +63,7 @@ Vagrant.configure("2") do |config|
             node_config.ssh.host = SSH_HOST
             node_config.vm.box = IMAGE_NAME
             node_config.vm.network "private_network", ip: node["ip"]
+            node_config.vm.network "private_network", ip: node["nlb_ip"]
             node_config.vm.hostname = node["name"]
 
             node_config.vm.provision "ansible" do |ansible|
@@ -96,6 +97,7 @@ Vagrant.configure("2") do |config|
             node_config.vm.network "forwarded_port", guest: 22, host: 4022 + i, id: "ssh"
             node_config.vm.box = IMAGE_NAME
             node_config.vm.network "private_network", ip: node["ip"]
+            node_config.vm.network "private_network", ip: node["nlb_ip"]
             node_config.ssh.host = SSH_HOST
             node_config.vm.hostname = node["name"]
 

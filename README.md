@@ -48,3 +48,35 @@ An example setup of HA Kubernetes cluster with WSL2 + Vagrant + Ansible on your 
   kubectl get nodes
   kubectl get pods -A
   ```
+
+## Install MetalLB load-balancer (optional)
+
+If you want to create Kubernetes Services of type LoadBalancer then you need a network load-balancer for bare metal Kubernetes cluster since Kubernetes itself does not offer implementation of network load-balancer.
+
+[MetalLB is a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols](https://metallb.org/).
+
+- Prepare Kubernetes cluster for MetalLB
+
+  Follow the instructions at https://metallb.org/installation/#preparation.
+
+- Install and configure MetalLB v0.10.2 in Kubernetes cluster.
+
+  ```sh
+  export KUBECONFIG=.kube/config
+  sh install-metallb.sh
+  ```
+
+- Deploy example web app and create load-balancer Service
+
+  ```
+  kubectl run hello-kubernetes --image=paulbouwer/hello-kubernetes:1 --port=8080 --labels=app=hello-kubernetes
+  kubectl create service loadbalancer hello-kubernetes --tcp=80:8080
+  ```
+
+- Get load-balancer IP for web app
+
+  ```
+  kubectl get service hello-kubernetes -o 'jsonpath={.status.loadBalancer.ingress[0].ip}'
+  ```
+
+  Navigate to web app at http://\<load-balancer-ip\>.
