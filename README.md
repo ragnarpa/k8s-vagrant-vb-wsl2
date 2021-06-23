@@ -58,7 +58,7 @@ If you want to create Kubernetes Services of type LoadBalancer then you need a n
 - Install and configure MetalLB v0.10.2 in Kubernetes cluster.
 
   ```sh
-  export KUBECONFIG=.kube/config
+  export KUBECONFIG=$(pwd)/.kube/config
   pushd metallb && sh install-metallb.sh && popd
   ```
 
