@@ -1,7 +1,7 @@
 require "yaml"
 
 IMAGE_NAME = "ubuntu/focal64"
-LB_IMAGE_NAME = "generic/alpine38"
+LB_IMAGE_NAME = "generic/alpine313"
 SSH_HOST = ENV["VAGRANT_SSH_HOST"]
 
 # IP address where SSH is listenting on a VM via port forward.

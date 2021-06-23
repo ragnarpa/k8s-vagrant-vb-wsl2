@@ -44,7 +44,7 @@ An example setup of HA Kubernetes cluster with WSL2 + Vagrant + Ansible on your 
 - Check out Kubernetes nodes and pods
 
   ```sh
-  export KUBECONFIG=.kube/config
+  export KUBECONFIG=$(pwd)/.kube/config
   kubectl get nodes
   kubectl get pods -A
   ```
@@ -58,7 +58,6 @@ If you want to create Kubernetes Services of type LoadBalancer then you need a n
 - Install and configure MetalLB v0.10.2 in Kubernetes cluster.
 
   ```sh
-  export KUBECONFIG=$(pwd)/.kube/config
   pushd metallb && sh install-metallb.sh && popd
   ```
 
