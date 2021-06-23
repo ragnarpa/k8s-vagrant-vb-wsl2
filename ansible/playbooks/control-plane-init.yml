@@ -9,6 +9,10 @@
     - name: Generate certificate key
       command: kubeadm certs certificate-key
       register: certificate_key
+
+    - import_tasks: ../tasks/configure-kubelet.yml
+      vars:
+        node_ip: "{{ node_ip }}"
     
     - import_tasks: ../tasks/init-kubernetes-cluster.yml
       vars:

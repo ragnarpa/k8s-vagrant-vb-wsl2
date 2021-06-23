@@ -1,0 +1,6 @@
+- name: Configure Kubelet
+  lineinfile:
+    path: /etc/default/kubelet
+    line: KUBELET_EXTRA_ARGS=--node-ip={{ node_ip }}
+    state: present
+    create: yes

@@ -6,6 +6,9 @@
     - import_tasks: ../tasks/disable-swap.yml
     - import_tasks: ../tasks/install-kubernetes.yml
     - import_tasks: ../tasks/configure-br-netfilter.yml
+    - import_tasks: ../tasks/configure-kubelet.yml
+      vars:
+        node_ip: "{{ node_ip }}"
 
     - name: Check control plane status
       shell: until curl -k https://{{ control_plane_endpoint }}/healthz?verbose; do sleep 1; done

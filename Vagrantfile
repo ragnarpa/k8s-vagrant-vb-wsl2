@@ -104,6 +104,7 @@ Vagrant.configure("2") do |config|
             node_config.vm.provision "ansible" do |ansible|
                 ansible.playbook = "ansible/playbooks/worker-join.yml"
                 ansible.extra_vars = {
+                    node_ip: node["ip"],
                     control_plane_endpoint: CONTROL_PLANE_LB_ENDPOINT
                 }
             end
