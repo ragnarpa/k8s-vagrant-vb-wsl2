@@ -10,9 +10,9 @@ unless SSH_HOST
     raise "VAGRANT_SSH_HOST not set."
 end
 
-CONTROL_PLANE_LB = YAML.load_file('control-plane-lb.yml')
-CONTROL_PLANE = YAML.load_file('control-plane.yml')
-DATA_PLANE = YAML.load_file('data-plane.yml')
+CONTROL_PLANE_LB = YAML.load_file('config/control-plane-lb.yml')
+CONTROL_PLANE = YAML.load_file('config/control-plane.yml')
+DATA_PLANE = YAML.load_file('config/data-plane.yml')
 
 CONTROL_PLANE_LB_IP = CONTROL_PLANE_LB["ip"]
 CONTROL_PLANE_LB_PORT = CONTROL_PLANE_LB["port"]

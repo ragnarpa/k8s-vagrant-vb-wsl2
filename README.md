@@ -55,15 +55,11 @@ If you want to create Kubernetes Services of type LoadBalancer then you need a n
 
 [MetalLB is a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols](https://metallb.org/).
 
-- Prepare Kubernetes cluster for MetalLB
-
-  Follow the instructions at https://metallb.org/installation/#preparation.
-
 - Install and configure MetalLB v0.10.2 in Kubernetes cluster.
 
   ```sh
   export KUBECONFIG=.kube/config
-  sh install-metallb.sh
+  pushd metallb && sh install-metallb.sh && popd
   ```
 
 - Deploy example web app and create load-balancer Service
